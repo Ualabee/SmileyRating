@@ -1,18 +1,12 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
-apply plugin: 'maven'
-
-group = 'com.github.ahmad-najar'
-
-
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
 android {
-    compileSdkVersion 28
-
+    compileSdkVersion 33
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0.0"
+        minSdkVersion 21
+        targetSdkVersion 33
     }
     buildTypes {
         release {
@@ -28,13 +22,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
 }
 
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
+                from components.release
                 groupId = 'com.github.ahmad-najar'
                 artifactId = 'SmileyRating'
                 version = '1.0.0'
